@@ -14,7 +14,7 @@
           <el-option label="Начальник охраны" value="boss" />
         </el-select>
       </el-form-item>
-      <el-button type="primary" @click="onSubmit">Изменить</el-button>
+      <el-button type="primary" @click="onSubmit">Изменить (WIP)</el-button>
       <el-button @click="onCancel">Отмена</el-button>
 
     </el-form>
@@ -57,12 +57,12 @@ export default {
   methods: {
     onSubmit() {
       request({
-        url: server+'/user/update',
+        url: server+'/user/create',
         method: 'post',
         headers: { 'Authorization': 'Bearer ' + getToken() },
         data: this.form
       }).then(resp => {
-        this.$message('Запрос выполнен!')
+        this.$message('Охранник изменён!')
         this.$router.push('/guards/all')
       })
     },

@@ -14,7 +14,7 @@
           <el-option label="Начальник охраны" value="boss" />
         </el-select>
       </el-form-item>
-      <el-button type="primary" @click="onSubmit">Create</el-button>
+      <el-button type="primary" @click="onSubmit">Создать</el-button>
       <el-button @click="onCancel">Cancel</el-button>
 
     </el-form>
@@ -24,6 +24,7 @@
 <script>
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
+import { server } from '@/api/ip'
 export default {
   data() {
     return {
@@ -38,20 +39,17 @@ export default {
   methods: {
     onSubmit() {
       request({
-        url: 'http://192.168.16.239:3000/user/create',
+        url: server+'/user/create',
         method: 'post',
         headers: { 'Authorization': 'Bearer ' + getToken() },
         data: this.form
       }).then(resp => {
-        this.$message('Запрос выполнен!')
+        this.$message('Охранник создан!')
         this.$router.push('/guards/all')
       })
     },
     onCancel() {
-      this.$message({
-        message: 'cancel!',
-        type: 'warning'
-      })
+      this.$router.push('/guards/all')
     }
   }
 }
