@@ -1,9 +1,10 @@
 import { getToken } from '@/utils/auth'
 import request from '@/utils/request'
+import {server} from './ip'
 
 export function getList(params) {
   return request({
-    url: 'http://192.168.16.239:3000/user/getAll',
+    url: server+'/user/getAll',
     method: 'get',
     headers: { 'Authorization': 'Bearer ' + getToken() }
 

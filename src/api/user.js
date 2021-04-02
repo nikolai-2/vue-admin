@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import {server} from './ip'
 
 export function login(data) {
   return request({
@@ -10,7 +11,7 @@ export function login(data) {
 
 export function getInfo(token) {
   return request({
-    url: 'http://192.168.16.239:3000/auth/getUser',
+    url: server+'/auth/getUser',
     method: 'get',
     headers: { 'Authorization': 'Bearer ' + token }
   })

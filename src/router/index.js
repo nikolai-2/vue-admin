@@ -54,14 +54,17 @@ export const constantRoutes = [
       meta: { title: 'Главная', icon: 'dashboard' }
     }]
   },
+
+  // этот роут не используется, но оставлен на случай если где-то остался код который его использует
   {
     path: '/user',
     hidden: true,
     component: Layout,
-    redirect: '/user/1',
+    redirect: '/guards/all',
     children: [
       {
         path: ':id',
+        redirect: '/guards/:id',
         component: () => import('@/views/user/index'),
         meta: { title: 'Пользователь' }
       }
@@ -94,6 +97,7 @@ export const constantRoutes = [
     path: '/guards',
     component: Layout,
     name: 'Охранники',
+    redirect:"/guards/all",
     meta: { title: 'Охранники', icon: 'table' },
     children: [
       {
@@ -101,6 +105,12 @@ export const constantRoutes = [
         name: 'Все охранники',
         component: () => import('@/views/table'),
         meta: { title: 'Все охранники', icon: 'user' }
+      },
+      {
+        hidden: true,
+        path: ':id',
+        component: () => import('@/views/user/index'),
+        meta: { title: 'Охранник' }
       }
     ]
 

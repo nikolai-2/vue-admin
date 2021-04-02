@@ -25,6 +25,7 @@
 import request from '@/utils/request'
 import { getToken } from '@/utils/auth'
 import router from '@/router'
+import { server } from '@/api/ip'
 export default {
   data() {
     return {
@@ -39,7 +40,7 @@ export default {
   },
   created() {
     request({
-      url: 'http://192.168.16.239:3000/user/getAll',
+      url: server+'/user/getAll',
       method: 'get',
       headers: { 'Authorization': 'Bearer ' + getToken() }
 
@@ -56,7 +57,7 @@ export default {
   methods: {
     onSubmit() {
       request({
-        url: 'http://192.168.16.239:3000/user/update',
+        url: server+'/user/update',
         method: 'post',
         headers: { 'Authorization': 'Bearer ' + getToken() },
         data: this.form
